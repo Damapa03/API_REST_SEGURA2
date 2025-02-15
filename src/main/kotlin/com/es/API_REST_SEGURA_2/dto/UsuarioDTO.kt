@@ -1,4 +1,6 @@
-﻿package com.es.API_REST_SEGURA_2.dto
+package com.es.API_REST_SEGURA_2.dto
 
-class UsuarioDTO {
-}
+data class UsuarioDTO(
+    val username: String,
+    val rol: String?
+)

@@ -1,4 +1,6 @@
 ﻿package com.es.API_REST_SEGURA_2.dto
 
-class LoginUsuarioDTO {
-}
+data class LoginUsuarioDTO(
+    val username: String,
+    val password: String
+)
