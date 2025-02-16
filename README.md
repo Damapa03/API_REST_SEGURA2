@@ -48,7 +48,7 @@ Realiza la eliminacion de una tarea
 
 ## Logica de negocio 
 En esta aplicacion la logica de negocio que se va realizar es que los usurios deben tener usuarios unicos, ni la contraseña de los usuario ni su direccion pueden estar en blanco.
-Por otro lado las tareas no pueden ser creadas sin un titulo pero si pueden carecer de una descripcion
+Por otro lado las tareas no pueden ser creadas sin un titulo pero si pueden carecer de una descripcion, ademas no sera posible modificar la fecha de creacion de estas
 ## Excepciones
 #### · NotFoundException:
 Excepcion para cuando no sea posible encontrar una entidad Codigo: 404

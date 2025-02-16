@@ -3,6 +3,7 @@
 import com.es.API_REST_SEGURA_2.dto.UsuarioDTO
 import com.es.API_REST_SEGURA_2.dto.UsuarioRegisterDTO
 import com.es.API_REST_SEGURA_2.error.exception.BadRequestException
+import com.es.API_REST_SEGURA_2.error.exception.NotFoundException
 import com.es.API_REST_SEGURA_2.model.Usuario
 import com.es.API_REST_SEGURA_2.repository.UsuarioRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -87,5 +88,9 @@ class UsuarioService{
             usuario.roles
         )
 
+    }
+
+    fun getUsuarioByUser(username: String) {
+        usuarioRepository.findByUsername(username).orElseThrow{ NotFoundException("Usuario $username not found") }
     }
 }

@@ -4,7 +4,7 @@ import org.bson.codecs.pojo.annotations.BsonId
 import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document("Usuario")
+@Document("collUser")
 data class Usuario(
     @BsonId
     val _id: String?,
