@@ -57,5 +57,5 @@ Excepcion para cuando no sea posible encontrar una entidad Codigo: 404
 Excepcion para cuando no sea posible realizar una validacion Codigo: 400
 
 ## Restricciones de seguridad
-Las restricciones de seguridad para los usuarios seran que estos no podran ver las tareas de el resto de ususarios de la aplicacion y por lo tanto tampoco podra borrale tareas a los otros usuarios.
+Las restricciones de seguridad para los usuarios seran que estos no podran ver las tareas de el resto de ususarios de la aplicacion y por lo tanto tampoco podran borrar las tareas a los otros usuarios.
 Por otro lado todos los tipos de usuarios podran realizar tanto el login como el registro

@@ -5,12 +5,9 @@ import com.es.API_REST_SEGURA_2.dto.TareaInsertDTO
 import com.es.API_REST_SEGURA_2.dto.TareaUpdateDTO
 import com.es.API_REST_SEGURA_2.model.Tarea
 import com.es.API_REST_SEGURA_2.service.TareaService
-import org.apache.catalina.Authenticator
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -30,9 +27,9 @@ class TareaController {
         return ResponseEntity(tareaService.getTareas(), HttpStatus.OK)
     }
 
-    @GetMapping("/{id}")
-    fun getTarea(@PathVariable id: String): ResponseEntity<Tarea> {
-        return ResponseEntity(tareaService.getTareaById(id), HttpStatus.OK)
+    @GetMapping("/{user}")
+    fun getTarea(@PathVariable user: String): ResponseEntity<Tarea> {
+        return ResponseEntity(tareaService.getTareaByUsuario(user), HttpStatus.OK)
     }
 
     @PostMapping()

@@ -23,8 +23,8 @@ class TareaService {
     fun getTareas(): List<Tarea> {
         return tareaRepository.findAll()
     }
-    fun getTareaById(id: String): Tarea? {
-        val tarea = tareaRepository.findById(id).orElseThrow { NotFoundException("la tarea no existe") }
+    fun getTareaByUsuario(user: String): Tarea? {
+        val tarea = tareaRepository.findByUsuario(user).orElseThrow { NotFoundException("la tarea no existe") }
 
         return tarea
     }
@@ -66,7 +66,7 @@ class TareaService {
     }
 
     fun updateTarea(tareaModified: TareaUpdateDTO): Tarea {
-        val tarea = getTareaById(tareaModified._id)
+        val tarea = getTareaByUsuario(tareaModified._id)
 
         tarea!!.copy(
             titulo = tareaModified.titulo?.takeIf { it.isNotBlank() } ?: tarea.titulo,
