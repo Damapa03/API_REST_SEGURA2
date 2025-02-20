@@ -4,14 +4,18 @@ import com.es.API_REST_SEGURA_2.dto.UsuarioDTO
 import com.es.API_REST_SEGURA_2.dto.UsuarioRegisterDTO
 import com.es.API_REST_SEGURA_2.error.exception.BadRequestException
 import com.es.API_REST_SEGURA_2.error.exception.NotFoundException
+import com.es.API_REST_SEGURA_2.error.exception.UnauthorizedException
 import com.es.API_REST_SEGURA_2.model.Usuario
 import com.es.API_REST_SEGURA_2.repository.UsuarioRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.User
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class UsuarioService{
+class UsuarioService: UserDetailsService {
 
     @Autowired
     private lateinit var usuarioRepository: UsuarioRepository
@@ -92,5 +96,19 @@ class UsuarioService{
 
     fun getUsuarioByUser(username: String) {
         usuarioRepository.findByUsername(username).orElseThrow{ NotFoundException("Usuario $username not found") }
+    }
+
+    override fun loadUserByUsername(username: String?): UserDetails? {
+        var usuario: Usuario = usuarioRepository
+            .findByUsername(username!!)
+            .orElseThrow {
+                UnauthorizedException("$username no existente")
+            }
+
+        return User.builder()
+            .username(usuario.username)
+            .password(usuario.password)
+            .roles(usuario.roles)
+            .build()
     }
 }
