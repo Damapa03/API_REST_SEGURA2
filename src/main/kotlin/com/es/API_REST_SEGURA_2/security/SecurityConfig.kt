@@ -39,8 +39,8 @@ class SecurityConfig {
             .csrf { csrf -> csrf.disable() } // Cross-Site Forgery
             .authorizeHttpRequests { auth -> auth
                 .requestMatchers("/usuario/**").permitAll()
-                .requestMatchers("/tarea/**").authenticated()
                 .requestMatchers(HttpMethod.GET, "/tarea").hasRole("ADMIN")
+                .requestMatchers("/tarea/**").authenticated()
                 .anyRequest().authenticated()
             } // Los recursos protegidos y publicos
             .oauth2ResourceServer { oauth2 -> oauth2.jwt(Customizer.withDefaults()) }

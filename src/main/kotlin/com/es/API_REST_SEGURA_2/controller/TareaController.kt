@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -37,7 +38,7 @@ class TareaController {
         return ResponseEntity(tareaService.postTarea(tarea), HttpStatus.CREATED)
     }
 
-    @PostMapping("/update")
+    @PutMapping()
     fun updateTarea(@RequestBody tarea: TareaUpdateDTO): ResponseEntity<Tarea> {
 
         val tareaUpdated = tareaService.updateTarea(tarea)

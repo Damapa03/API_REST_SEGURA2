@@ -5,6 +5,7 @@ import com.es.API_REST_SEGURA_2.dto.TareaInsertDTO
 import com.es.API_REST_SEGURA_2.dto.TareaUpdateDTO
 import com.es.API_REST_SEGURA_2.error.exception.BadRequestException
 import com.es.API_REST_SEGURA_2.error.exception.NotFoundException
+import com.es.API_REST_SEGURA_2.error.exception.UnauthorizedException
 import com.es.API_REST_SEGURA_2.model.Tarea
 import com.es.API_REST_SEGURA_2.repository.TareaRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,7 +13,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import java.time.Instant
-import java.util.Date
+import java.util.*
 
 @Service
 class TareaService {
@@ -27,6 +28,9 @@ class TareaService {
         val tarea = tareaRepository.findByUsuario(user).orElseThrow { NotFoundException("la tarea no existe") }
 
         return tarea
+    }
+    fun getTareaById(id: String): Tarea? {
+        return tareaRepository.findById(id).orElseThrow { NotFoundException("la tarea no existe") }
     }
 
     fun postTarea(tarea: TareaInsertDTO): TareaDTO {
@@ -45,7 +49,7 @@ class TareaService {
             Date.from(Instant.now()),
             false
         )
-        if ("USER" in rol){
+        if ("ROLE_USER" in rol){
             if (tarea.usuario != usuario){
                 tareaEntity.usuario = usuario
             }
@@ -66,21 +70,42 @@ class TareaService {
     }
 
     fun updateTarea(tareaModified: TareaUpdateDTO): Tarea {
-        val tarea = getTareaByUsuario(tareaModified._id)
+        val tarea = getTareaById(tareaModified._id)
+        val auth = SecurityContextHolder.getContext().authentication
+        var usuario = auth.name
+        val rol = auth.authorities.map(GrantedAuthority::getAuthority)
 
-        tarea!!.copy(
+        val tareaUpdate = Tarea(
+            _id = tarea!!._id,
             titulo = tareaModified.titulo?.takeIf { it.isNotBlank() } ?: tarea.titulo,
             descripcion = tareaModified.descripcion?.takeIf { it.isNotBlank() } ?: tarea.descripcion,
             usuario = tareaModified.usuario?.takeIf { it.isNotBlank() } ?: tarea.usuario,
+            fechaCreacion = tarea.fechaCreacion,
             estado = tareaModified.estado ?: tarea.estado
         )
+        if ("ROLE_USER" in rol){
+            if (tareaUpdate.usuario != usuario){
+                tareaUpdate.usuario = usuario
+            }
+        }else {
+            usuarioService.getUsuarioByUser(tareaUpdate.usuario)
+        }
 
-        return tareaRepository.save(tarea)
+        return tareaRepository.save(tareaUpdate)
     }
    fun deleteTarea(id: String){
-       try{ tareaRepository.deleteById(id)
-       }catch (ex: Exception ){
-           throw NotFoundException("tarea no encontrada")
+       val tarea = getTareaById(id)
+       val auth = SecurityContextHolder.getContext().authentication
+       var usuario = auth.name
+       val rol = auth.authorities.map(GrantedAuthority::getAuthority)
+
+       if ("ROLE_ADMIN" in rol){
+           tareaRepository.deleteById(id)
        }
+
+       if ("ROLE_USER" in rol && tarea!!.usuario == usuario){
+           tareaRepository.deleteById(id)
+       }else throw UnauthorizedException("No tiene permiso para borrar esa tarea")
+
    }
 }
