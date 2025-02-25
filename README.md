@@ -62,4 +62,74 @@ Por otro lado todos los tipos de usuarios podran realizar tanto el login como el
 
 ## PRUEBAS GESTIÓN USUARIOS
 [Documentacion pruebas api.pdf](https://github.com/user-attachments/files/18913810/Documentacion.pruebas.api.pdf)
+# Insomnia
+
+## Registro
+
+En la primera prueba hacemos un registro como usuario y nos devuelven el nombre de usuario y su rol
+![image](https://github.com/user-attachments/assets/85b92db9-6536-40e3-bbb8-32298a662a9c)
+
+Si el usuario ya ha sido registrado nos lo indicará
+![image](https://github.com/user-attachments/assets/f649be38-ee55-4f2c-ae72-9cd0b6606919)
+
+Si hubiese algún dato vacío nos saldrá un 400 Bad Request
+![image](https://github.com/user-attachments/assets/5fd455e4-ffcd-495f-a744-266d5f87f24f)
+
+Si las contraseñas no coinciden también saltaba un error
+![image](https://github.com/user-attachments/assets/d34b3268-8d61-461d-a878-20b9fc220427)
+
+
+Si el rol introducido no fuese ni USER ni ADMIN también saltará un error
+![image](https://github.com/user-attachments/assets/77c68110-fa7b-41a3-b668-72f9fefae8fc)
+
+Al igual que si se introdujese una provincia o municipio que no existen
+![image](https://github.com/user-attachments/assets/6c7a1379-76d6-4ed7-ad30-3180f300c1c3)
+![image](https://github.com/user-attachments/assets/a18a9bbd-a033-46b9-86b3-e635dc384942)
+
+
+En esta prueba podemos ver cómo el usuario registrado es ADMIN
+![image](https://github.com/user-attachments/assets/fab754fc-5dca-4851-af04-e3e396ec9331)
+
+
+Y aquí podemos comprobar como han sido introducidos en la base de datos
+![image](https://github.com/user-attachments/assets/a98bd751-9312-4684-aa65-09a5e29fda8b)
+
+## Login
+
+Si al realizar el login introducimos una campo mal nos dará un error de credenciales incorrectas
+![image](https://github.com/user-attachments/assets/e4326824-7e8d-450a-accb-d08e81ac3e1f)
+
+
+Y en el caso de que el login sea correcto nos devolverán el token
+
+![image](https://github.com/user-attachments/assets/c0a2741e-5e5a-4268-8643-a2036feb1066)
+
+# Interfaz gráfica
+
+## Registro
+
+En esta prueba si las contraseñas no coinciden saltara un diálogo indicándonos que no coinciden
+![image](https://github.com/user-attachments/assets/042ab21d-c434-408d-8d25-f1b755d8b669)
+
+
+
+En el caso que algún campo esté en blanco o la provincia y municipio no sean correctos saltara un dialog genérico
+![image](https://github.com/user-attachments/assets/585409cd-76c2-467b-ae6a-ffa8cb55dce6)
+
+
+En el caso que pongamos todo correctamente saldrá un diálogo indicandonoslo
+![image](https://github.com/user-attachments/assets/d6e455c2-a010-40ee-80a5-2f91896a0c85)
+
+
+## Login
+
+En el caso de realizar un login incorrecto saldrá un dialogo que nos lo indique
+![image](https://github.com/user-attachments/assets/fe73f07d-0c8f-440a-9385-bf04167fb551)
+
+Y si a sido exitoso saltará la ventana de las tareas
+
+![image](https://github.com/user-attachments/assets/6df54f05-88aa-4c49-8d81-7b09e503596e)
+
+
+
 
