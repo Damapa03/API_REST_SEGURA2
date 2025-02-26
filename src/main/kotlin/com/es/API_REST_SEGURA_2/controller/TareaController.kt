@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.util.Optional
 
 @RestController
 @RequestMapping("/tarea")
@@ -29,7 +30,7 @@ class TareaController {
     }
 
     @GetMapping("/{user}")
-    fun getTarea(@PathVariable user: String): ResponseEntity<Tarea> {
+    fun getTarea(@PathVariable user: String): ResponseEntity<Optional<List<Tarea>>> {
         return ResponseEntity(tareaService.getTareaByUsuario(user), HttpStatus.OK)
     }
 
@@ -38,10 +39,10 @@ class TareaController {
         return ResponseEntity(tareaService.postTarea(tarea), HttpStatus.CREATED)
     }
 
-    @PutMapping()
-    fun updateTarea(@RequestBody tarea: TareaUpdateDTO): ResponseEntity<Tarea> {
+    @PutMapping("/{id}")
+    fun updateTarea(@RequestBody tarea: TareaUpdateDTO, @PathVariable id: String): ResponseEntity<Tarea> {
 
-        val tareaUpdated = tareaService.updateTarea(tarea)
+        val tareaUpdated = tareaService.updateTarea(tarea, id)
         return ResponseEntity(tareaUpdated, HttpStatus.CREATED)
     }
 

@@ -7,5 +7,5 @@ import java.util.Optional
 
 @Repository
 interface TareaRepository: MongoRepository<Tarea, String> {
-    fun findByUsuario(username: String): Optional<Tarea>
+    fun findByUsuario(username: String): Optional<List<Tarea>>
 }
