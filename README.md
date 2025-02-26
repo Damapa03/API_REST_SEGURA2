@@ -1,4 +1,4 @@
-﻿# API REST SEGURA 2
+![image](https://github.com/user-attachments/assets/dbe75b9e-cb0c-4aea-8ee9-b8bf17b31be5)![image](https://github.com/user-attachments/assets/e43f1e14-7845-432c-9e7a-2b4c2289eef1)﻿# API REST SEGURA 2
 
 ## Descripcion de los documentos 
 ### collUser
@@ -130,6 +130,51 @@ Y si a sido exitoso saltará la ventana de las tareas
 
 ![image](https://github.com/user-attachments/assets/6df54f05-88aa-4c49-8d81-7b09e503596e)
 
+## PRUEBAS GÉSTION DE TAREAS
+
+### Usuario con rol USER
+
+● Ver todas SUS tareas
+En esta prueba podemos ver como el usuario no tiene acceso a todas las tareas
+![image](https://github.com/user-attachments/assets/8f82b138-e59a-4bad-8f98-8a344987e389)
+Como a su vez no puede ver las tareas de otros usuarios
+![image](https://github.com/user-attachments/assets/753c14e7-e29e-4745-88c4-b8275c6285bf)
+Pero si es posible que vea las suyas propias
+![image](https://github.com/user-attachments/assets/e9d4fe87-6479-41f4-92fe-31d98dde82e3)
+
+● Marcar como hecha una tarea propia
+Podemos comprobar como no puede modificar tareas que no le pertenezcan
+![image](https://github.com/user-attachments/assets/f1711a76-f279-40a1-828e-66ea36a30b79)
+Pero si las suyas
+![image](https://github.com/user-attachments/assets/3c7cf7aa-b02f-4cf2-9a70-de45c5dc65bd)
+
+● Eliminar una tarea propia
+El usuario no puede eliminar una tarea que no se a suya
+![image](https://github.com/user-attachments/assets/5735e78e-cbce-4e39-a94d-52138ab1cd56)
+Pero si las suyas
+![image](https://github.com/user-attachments/assets/3e71d549-846e-4e60-b580-f0e9260e7dee)
+
+● Darse de alta A SÍ MISMO una tarea
+El usuario no puede crearle tareas a otros usuarios
+![image](https://github.com/user-attachments/assets/f8bafb5f-b1a2-49c4-8da5-5e19a49644b2)
+Pero si puede crearselas a si mismo
+![image](https://github.com/user-attachments/assets/a5fa3ae4-eaa2-4573-9624-d509dee873ce)
+
+### Usuario con rol ADMIN
+
+● Ver todas las tareas
+El admin puede ver todas las tareas
+![image](https://github.com/user-attachments/assets/85ad9ae1-fa76-48c1-b20e-8b4c4a23b80a)
+Y todas las tareas de un usuario especifico
+![image](https://github.com/user-attachments/assets/8712af21-a6d9-46a8-804c-acb06a3e2e06)
+
+● Eliminar cualquier tarea de cualquier usuario
+El admin puede borrar cualquier tarea
+![image](https://github.com/user-attachments/assets/a9add4f0-d33e-405e-9d4f-1627a26f77e4)
+
+● Dar de alta tareas a cualquier usuario
+El admin puede crear taraeas para cualquier usuario
+![image](https://github.com/user-attachments/assets/b498f333-d0eb-4e0d-9062-0f554a221174)
 
 
 
