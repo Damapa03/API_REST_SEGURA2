@@ -44,3 +44,4 @@ out/
 *.pem
 *.env.properties
 
+!interfaz/*.pem
